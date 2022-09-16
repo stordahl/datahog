@@ -1,2 +1,2 @@
 # lighthouse-datahog
-Collect historical lighthouse data on your products via Github Actions 
+Collect historical lighthouse data on your products via Github 
