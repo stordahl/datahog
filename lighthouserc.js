@@ -1,11 +1,9 @@
-const url = [
-  'https://example.com',
-];
+const config = require('./datahog.config')
 
 module.exports = {
   ci: {
     collect: {
-      url,
+			url: config.urls,
       configPath: "./lighthouse-config.js",
       numberOfRuns: 1,
       settings: {

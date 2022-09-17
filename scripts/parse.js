@@ -1,22 +1,9 @@
 const glob = require("glob")
 const fs = require("fs/promises")
 
-const constructVariant = (url) => {
-  let pathLength
-  let _url = new URL(url),
-      path = _url.pathname.split('/')
-  pathLength = path.length
-  cleanPath = path.splice(0, 1)
-  
-  let name = path.at(-1).split('.')[0]
-  
-  if(pathLength === 3) return `iife-${name}` 
-  return `${path[0]}-${path[1]}-${name}`
-}
-
 let entries = []
 
-console.log('☕️ Starting Parser')
+console.log('☕️ Starting Datahog Parser')
 
 glob(".lighthouseci/lhr-*.json", { nonull: true }, async function (er, files) {
   await files.forEach(async (filePath, index) => {
@@ -25,11 +12,10 @@ glob(".lighthouseci/lhr-*.json", { nonull: true }, async function (er, files) {
       const data = await fs.readFile(filePath, { encoding: 'utf-8' })
       const parse = JSON.parse(data)
       const { audits, finalUrl, fetchTime } = parse
-      const variant = constructVariant(finalUrl)
       const time_stamp = new Date(fetchTime).toISOString()
       
       const parsed = {
-        variant,
+				url: finalUrl,
         time_stamp,
         first_contentful_paint: audits['first-contentful-paint'],
         largest_contentful_paint: audits['largest-contentful-paint'],
@@ -46,11 +32,11 @@ glob(".lighthouseci/lhr-*.json", { nonull: true }, async function (er, files) {
       if(isFinished){
         await fs.writeFile(`./data/${time_stamp}.json`, JSON.stringify(entries, null, 2), (err) => {
           if (err) {
-            console.log('Failed to write data to file');
+            console.log('Datahog Error: Failed to write data to file');
             return;
           }
         console.log('Created file successfully');
-        }).then(() => console.log('✅ Finished'))
+        }).then(() => console.log('✅ Datahog Parser Successfully Finished'))
       }
     } catch(e) {
       throw Error(e)
