@@ -1,9 +1,12 @@
 const glob = require("glob")
-const fs = require("fs/promises")
+const fs = require("node:fs/promises")
+const config = require("../datahog.config")
+const { deleteDir } = require("./utils")
 
 let entries = []
 
 console.log('☕️ Starting Datahog Parser')
+
 
 glob(".lighthouseci/lhr-*.json", { nonull: true }, async function (er, files) {
   await files.forEach(async (filePath, index) => {
@@ -36,7 +39,7 @@ glob(".lighthouseci/lhr-*.json", { nonull: true }, async function (er, files) {
             return;
           }
         console.log('Created file successfully');
-        }).then(() => console.log('✅ Datahog Parser Successfully Finished'))
+        }).then(() => deleteDir(".lighthouseci/") && console.log('✅ Datahog Parser Successfully Finished'))
       }
     } catch(e) {
       throw Error(e)

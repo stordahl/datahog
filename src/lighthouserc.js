@@ -1,14 +1,13 @@
-const config = require('./datahog.config')
+const config = require('../datahog.config')
 
 module.exports = {
   ci: {
     collect: {
 			url: config.urls,
       configPath: "./lighthouse-config.js",
-      numberOfRuns: 1,
+      numberOfRuns: config.runs,
       settings: {
-        output: ['json'],
-        //throttlingMethod: 'devtools',
+        output: config.output,
         onlyCategories: ['performance'],
       }
     },

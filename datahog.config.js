@@ -3,4 +3,6 @@ module.exports = {
 	urls: [
 		'https://google.com'
 	],
+	runs: 1,
+	output: ['json'],
 }
