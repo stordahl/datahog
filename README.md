@@ -11,11 +11,11 @@ The only config you'll need to edit is the config object in `datahog.config.js`.
 
 ### Config Object
 
-| Property | Description                                       | Type                      |
-|----------|---------------------------------------------------|---------------------------|
-| urls     | Full urls that you want to run Lighthouse against | `Array<string>`           |
-| runs     | Number of Lighthouse runs per page                | `number`                  |
-| output   | Formats to output data to                         | `Array<'json' \| 'html'>` |
+| Property | Description                                       | Type                                      |
+|----------|---------------------------------------------------|-------------------------------------------|
+| urls     | Full urls that you want to run Lighthouse against | `Array<string>`                           |
+| runs     | Number of Lighthouse runs per page                | `number`                                  |
+| output   | Formats to output data to                         | `Array<'json'>` (only JSON at the moment) |
 
 ## Development
 
