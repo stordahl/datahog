@@ -22,6 +22,9 @@ The only config you'll need to edit is the config object in `datahog.config.js`.
 Clone the repo to your local env, install dependancies and run 
 
 ```shell
+# First install Lighthouse CI globally on your machine
+npm install -g @lhci/cli@0.8.x
+# Then install local deps
 npm i && npm run lh
 ```
 
