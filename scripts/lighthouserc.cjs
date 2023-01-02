@@ -1,4 +1,4 @@
-const config = require('../datahog.config')
+const config = require('../datahog.config.cjs')
 
 module.exports = {
   ci: {
