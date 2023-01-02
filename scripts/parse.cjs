@@ -1,7 +1,7 @@
 const glob = require("glob")
 const fs = require("node:fs/promises")
-const config = require("../datahog.config")
-const { deleteDir } = require("./utils")
+const config = require("../datahog.config.cjs")
+const { deleteDir } = require("./utils.cjs")
 
 let entries = []
 
